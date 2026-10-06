@@ -1,2 +1,0 @@
-import {Router} from 'express';import {query} from '../db.js';const router=Router();
-router.get('/',async(req,res)=>{try{const r=await query(`SELECT id,semana_inicio,semana_fin,genero,cajas_totales,cajas_reservadas,cajas_disponibles,estado FROM disponibilidad_semanal WHERE estado<>'cerrada' AND semana_fin>=CURRENT_DATE ORDER BY semana_inicio,genero`);res.json({items:r.rows})}catch(e){console.error(e);res.status(500).json({message:'No fue posible consultar la disponibilidad.'})}});export default router;
